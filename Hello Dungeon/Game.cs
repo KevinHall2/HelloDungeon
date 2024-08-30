@@ -45,7 +45,7 @@ namespace Hello_Dungeon
             Console.WriteLine();
             Console.WriteLine("As you adjust to your new power, you see the figure regard you with what seems like acceptance.");
             Console.WriteLine("'Good. To help give you an idea of what you can do now, I'll rate your abilities from a scale of 1-20.'");
-            GetPlayerStatistics();
+            string playerStatistics = GetPlayerStatistics();
             Console.WriteLine();
             Console.WriteLine("As you begin traversing the dungeon, you come into a hallway that branches into two different directions.");
             Console.WriteLine(" A left door and a right door are before you.");
@@ -154,18 +154,17 @@ namespace Hello_Dungeon
             //stat display function
             string GetPlayerStatistics()
             {
-                string playerStatistics = "";
-                {
-                    playerStatistics = (
-                        ("'Your physical offense is " + playerWeaponDamageOutput + ".'") +
-                        ("'Your defensive capability is " + playerDefenseCapability + ".'") +
-                        ("'Your magical capability is " + playerEtherOutput + ".'") +
-                        ("'Your 'maximum hit points' are " + playerMaxHealth + ".'") +
-                        ("'Your 'current hit points' are " + playerCurrentHealth + ".'"));
-                }
+                string statisticsResult =
+                        ("'Your physical offense is " + playerWeaponDamageOutput + ".") +
+                        ("Your defensive capability is " + playerDefenseCapability + ".") +
+                        ("Your magical capability is " + playerEtherOutput + ".") +
+                        ("Your 'maximum hit points' are " + playerMaxHealth + ".") +
+                        ("Your 'current hit points' are " + playerCurrentHealth + ".'");
+                    
+                Console.WriteLine(statisticsResult);
                 Console.WriteLine("Press any key to continue.");
                 Console.ReadKey();
-                return playerStatistics;
+                return statisticsResult;
             }
         }
     }
