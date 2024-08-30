@@ -15,7 +15,7 @@ namespace Hello_Dungeon
             int playerStrength = 1;
             int playerBody = 1;
             int playerMind = 1;
-            int playerHealth = 0;
+            int playerMaxHealth = 0;
             //inventory
             int playerWealth = 3;
             int playerWeaponValue = 1;
@@ -37,73 +37,17 @@ namespace Hello_Dungeon
             Console.WriteLine("'Very well " + playerName + ".'");
             Console.WriteLine("The figure looks you up and down, and its eyes seem to narrow in dissapointment.");
             Console.WriteLine("'You are rather... ordinary. Determine a specialization to remedy this.'");
-            Console.WriteLine("Three such 'specializations' forcibly inject themselves into your head: ");
-            Console.WriteLine();
-            Console.WriteLine("A Warrior, with a balance between physical offense and defense.");
-            Console.WriteLine("A Scoundrel, with a focus on physical offense."); 
-            Console.WriteLine("A Mystic, with a focus on magical arts.");
             Console.WriteLine();
             //class selection
-            string playerSpecialization = "";
-            while (playerSpecialization != "Warrior" && playerSpecialization != "Scoundrel" && playerSpecialization != "Mystic")
-            {
-                Console.WriteLine("Which one do you focus your mind on?");
-                playerSpecialization = Console.ReadLine();
-                if (playerSpecialization == "Warrior")
-                {
-                    Console.WriteLine("You focus on the Warrior, and feel yourself become a paragon of athleticism.");
-                    Console.WriteLine("A sword manifests itself from red energy in your dominant hand, and protective armor dons your body.");
-                    //class statistic and equipment benefits
-                    playerStrength = playerStrength+2;
-                    playerBody = playerBody + 2;
-                    playerWeaponValue = playerWeaponValue+ 1;
-                    playerArmorRating = playerArmorRating+ 1;
-                    //statistic totals
-                    playerWeaponDamageOutput = (playerStrength + playerWeaponValue);
-                    playerDefenseCapability = (playerArmorRating + playerBody);
-                    playerEtherOutput = (playerMind + playerFocusDensity);
-                    playerHealth = (playerBody + 9);
-                }
-                else if (playerSpecialization == "Scoundrel")
-                {
-                    Console.WriteLine("You focus on the Scoundrel, and feel yourself embody the mentality of a savage opportunist.");
-                    Console.WriteLine("A wicked dagger manifests itself from red energy in your dominant hand, and you feel your senses sharpen.");
-                    //class statistic and equipment benefits
-                    playerStrength = playerStrength + 2;
-                    playerMind = playerMind + 2;
-                    playerWeaponValue = playerWeaponValue + 3;
-                    //statistic totals
-                    playerWeaponDamageOutput = (playerStrength + playerWeaponValue);
-                    playerDefenseCapability = (playerArmorRating + playerBody);
-                    playerEtherOutput = (playerMind + playerFocusDensity);
-                    playerHealth = (playerBody + 9);
-                }
-                else if (playerSpecialization == "Mystic")
-                {
-                    Console.WriteLine("You focus on the Mystic, and feel the ether of reality bend more easily to your will.");
-                    Console.WriteLine("A sphere of red reality-ether coalesces into your dominant hand. You can use this to focus your magics.");
-                    //class statistic and equipment benefits
-                    playerMind = playerMind + 4;
-                    playerFocusDensity = playerFocusDensity + 3;
-                    //statistic totals
-                    playerWeaponDamageOutput = (playerStrength + playerWeaponValue);
-                    playerDefenseCapability = (playerArmorRating + playerBody);
-                    playerEtherOutput = (playerMind + playerFocusDensity);
-                    playerHealth = (playerBody + 9);
-                }
-                else
-                {
-                    Console.WriteLine("You attempt to manifest that idea, but the figure purges it from your mind.");
-                    Console.WriteLine("'Pick one of the three.'");
-                }
-            }
+            GetClassSelectionInput("Three such 'specializations forcibly inject themselves into your head: A Warrior, with a balance between physical offense and defense. A Scoundrel, with a focus on physical offense. A Mystic, with a focus on magical arts.", "warrior", "scoundrel", "mystic");
+            Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("As you adjust to your new power, you see the figure regard you with what seems like acceptance.");
             Console.WriteLine("'Good. To help give you an idea of what you can do now, I'll rate your abilities from a scale of 1-20.'");
             Console.WriteLine("'Your physical offense is " + playerWeaponDamageOutput + ".'");
             Console.WriteLine("'Your defensive capability is " + playerDefenseCapability + ".'");
             Console.WriteLine("'Your magical capability is " + playerEtherOutput + ".'");
-            Console.WriteLine("'Your vitality is " + playerHealth + ".'");
+            Console.WriteLine("'Your 'hit points' are " + playerMaxHealth + ".'");
             Console.WriteLine();
             Console.WriteLine("As you begin traversing the dungeon, you come into a hallway that branches into two different directions.");
             Console.WriteLine(" A left door and a right door are before you.");
@@ -127,6 +71,81 @@ namespace Hello_Dungeon
                 {
                     Console.WriteLine("You are unable to do that.");
                 }
+            }
+            int GetClassSelectionInput(string description, string option1, string option2, string option3)
+            {
+                string input = "";
+                int inputRecieved = 0;
+                while (inputRecieved != 1 && inputRecieved != 2)
+                {
+                    Console.WriteLine(description);
+                    Console.WriteLine("1. " + option1);
+                    Console.WriteLine("2. " + option2);
+                    Console.WriteLine("3. " + option3);
+                    Console.Write("> ");
+
+                    input = Console.ReadLine();
+
+                    if (input == "1" || input == option1)
+                    {
+                        inputRecieved = 1;
+                        Console.WriteLine("You focus on the Warrior, and feel yourself become a paragon of athleticism.");
+                        Console.WriteLine("A sword manifests itself from red energy in your dominant hand, and protective armor dons your body.");
+                        //class statistic and equipment benefits
+                        playerStrength = playerStrength + 2;
+                        playerBody = playerBody + 4;
+                        playerWeaponValue = playerWeaponValue + 1;
+                        playerArmorRating = playerArmorRating + 2;
+                        //statistic totals
+                        playerWeaponDamageOutput = (playerStrength + playerWeaponValue);
+                        playerDefenseCapability = (playerArmorRating + playerBody);
+                        playerEtherOutput = (playerMind + playerFocusDensity);
+                        playerMaxHealth = (playerBody + 9);
+                        Console.WriteLine("Press any key to continue.");
+                        Console.ReadKey();
+                    }
+                    else if (input == "2" || input == option2)
+                    {
+                        inputRecieved = 2;
+                        Console.WriteLine("You focus on the Scoundrel, and feel yourself embody the mentality of a savage opportunist.");
+                        Console.WriteLine("A wicked dagger manifests itself from red energy in your dominant hand, and you feel your senses sharpen.");
+                        //class statistic and equipment benefits
+                        playerStrength = playerStrength + 2;
+                        playerMind = playerMind + 2;
+                        playerWeaponValue = playerWeaponValue + 3;
+                        //statistic totals
+                        playerWeaponDamageOutput = (playerStrength + playerWeaponValue);
+                        playerDefenseCapability = (playerArmorRating + playerBody);
+                        playerEtherOutput = (playerMind + playerFocusDensity);
+                        playerMaxHealth = (playerBody + 9);
+                        Console.WriteLine("Press any key to continue.");
+                        Console.ReadKey();
+                    }
+                    else if (input == "3" || input == option3)
+                    {
+                        inputRecieved = 3;
+                        Console.WriteLine("You focus on the Mystic, and feel the ether of reality bend more easily to your will.");
+                        Console.WriteLine("A sphere of red reality-ether coalesces into your dominant hand. You can use this to focus your magics.");
+                        //class statistic and equipment benefits
+                        playerMind = playerMind + 4;
+                        playerFocusDensity = playerFocusDensity + 3;
+                        //statistic totals
+                        playerWeaponDamageOutput = (playerStrength + playerWeaponValue);
+                        playerDefenseCapability = (playerArmorRating + playerBody);
+                        playerEtherOutput = (playerMind + playerFocusDensity);
+                        playerMaxHealth = (playerBody + 9);
+                        Console.WriteLine("Press any key to continue.");
+                        Console.ReadKey();
+                    }
+                    else
+                    {
+                        Console.WriteLine("You attempt to manifest that idea, but the figure purges it from your mind.");
+                        Console.WriteLine("'Pick one of the three: Warrior, scoundrel, or mystic.'");
+                        Console.ReadKey();
+                    }
+                }
+                Console.Clear();
+                return inputRecieved;
             }
         }
     }
