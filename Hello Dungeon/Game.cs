@@ -16,6 +16,7 @@ namespace Hello_Dungeon
             int playerBody = 1;
             int playerMind = 1;
             int playerMaxHealth = 0;
+            int playerCurrentHealth = 0;
             //inventory
             int playerWealth = 3;
             int playerWeaponValue = 1;
@@ -47,7 +48,8 @@ namespace Hello_Dungeon
             Console.WriteLine("'Your physical offense is " + playerWeaponDamageOutput + ".'");
             Console.WriteLine("'Your defensive capability is " + playerDefenseCapability + ".'");
             Console.WriteLine("'Your magical capability is " + playerEtherOutput + ".'");
-            Console.WriteLine("'Your 'hit points' are " + playerMaxHealth + ".'");
+            Console.WriteLine("'Your 'maximum hit points' are " + playerMaxHealth + ".'");
+            Console.WriteLine("'Your 'current hit points' are " + playerCurrentHealth + ".'");
             Console.WriteLine();
             Console.WriteLine("As you begin traversing the dungeon, you come into a hallway that branches into two different directions.");
             Console.WriteLine(" A left door and a right door are before you.");
@@ -93,7 +95,7 @@ namespace Hello_Dungeon
                         Console.WriteLine("A sword manifests itself from red energy in your dominant hand, and protective armor dons your body.");
                         //class statistic and equipment benefits
                         playerStrength = playerStrength + 2;
-                        playerBody = playerBody + 4;
+                        playerBody = playerBody + 3;
                         playerWeaponValue = playerWeaponValue + 1;
                         playerArmorRating = playerArmorRating + 2;
                         //statistic totals
@@ -101,6 +103,7 @@ namespace Hello_Dungeon
                         playerDefenseCapability = (playerArmorRating + playerBody);
                         playerEtherOutput = (playerMind + playerFocusDensity);
                         playerMaxHealth = (playerBody + 9);
+                        playerCurrentHealth = playerMaxHealth;
                         Console.WriteLine("Press any key to continue.");
                         Console.ReadKey();
                     }
@@ -118,6 +121,7 @@ namespace Hello_Dungeon
                         playerDefenseCapability = (playerArmorRating + playerBody);
                         playerEtherOutput = (playerMind + playerFocusDensity);
                         playerMaxHealth = (playerBody + 9);
+                        playerCurrentHealth = playerMaxHealth;
                         Console.WriteLine("Press any key to continue.");
                         Console.ReadKey();
                     }
@@ -134,6 +138,7 @@ namespace Hello_Dungeon
                         playerDefenseCapability = (playerArmorRating + playerBody);
                         playerEtherOutput = (playerMind + playerFocusDensity);
                         playerMaxHealth = (playerBody + 9);
+                        playerCurrentHealth = playerMaxHealth;
                         Console.WriteLine("Press any key to continue.");
                         Console.ReadKey();
                     }
@@ -141,6 +146,7 @@ namespace Hello_Dungeon
                     {
                         Console.WriteLine("You attempt to manifest that idea, but the figure purges it from your mind.");
                         Console.WriteLine("'Pick one of the three: Warrior, scoundrel, or mystic.'");
+                        Console.Write("> ");
                         Console.ReadKey();
                     }
                 }
