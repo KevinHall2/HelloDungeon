@@ -75,7 +75,7 @@ namespace Hello_Dungeon
             {
                 string input = "";
                 int inputRecieved = 0;
-                while (inputRecieved != 1 && inputRecieved != 2)
+                while (inputRecieved != 1 && inputRecieved != 2 && inputRecieved != 3)
                 {
                     Console.WriteLine(description);
                     Console.WriteLine("1. " + option1);
