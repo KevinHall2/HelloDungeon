@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -61,30 +62,43 @@ namespace Hello_Dungeon
             GetStoryText("As you adjust to your new power, you see the figure regard you with what seems like acceptance." +
                 "'Good. To help give you an idea of what you can do now in this game, I'll rate your abilities from a scale of 1-20.'");
             string playerStatistics = GetPlayerStatistics();
-            Console.WriteLine();
-            Console.WriteLine("As you begin traversing the dungeon, you come into a hallway that branches into two different directions.");
-            Console.WriteLine(" A left door and a right door are before you.");
-            string decisionBranchedHallway = "";
-            while (decisionBranchedHallway != "left" && decisionBranchedHallway != "right")
 
+            
+
+            //function for two choice options
+            int GetDecisionInput(string premiseDescription, string option1, string option2, string resolution1, string resolution2)
             {
-                Console.WriteLine("Which do you choose?");
-                decisionBranchedHallway = Console.ReadLine();
-                if (decisionBranchedHallway == "left")
+                string input = "";
+                int decisionMade = 0;
+                while (decisionMade != 1 && decisionMade != 2)
+
                 {
-                    Console.WriteLine("You trend towards the left door and push against its heavy stone frame to open it." +
-                        " As you get the door a fraction of the way open, a deluge of freshwater pours out, forcing the door" +
-                        "the rest of the way open and sweeping you into a subterranean lake.");
+                    Console.Clear();
+                    Console.WriteLine(premiseDescription);
+                    Console.WriteLine("1. " + option1);
+                    Console.WriteLine("2. " + option2);
+                    Console.Write("> ");
+
+                    input = Console.ReadLine();
+
+                    if (input == "1" || input == option1)
+                    {
+                        decisionMade = 1;
+                        Console.WriteLine(resolution1);
+                    }
+                    else if (input == "2" || input == option2)
+                    {
+                        decisionMade = 2;
+                        Console.WriteLine(resolution2);
+                    }
+                    else
+                    {
+                        Console.WriteLine("You are unable to do that.");
+                    }
                 }
-                else if (decisionBranchedHallway == "right")
-                {
-                    Console.WriteLine("You move towards the right door and find that you have to lift it from the bottom to open it.");
-                }
-                else
-                {
-                    Console.WriteLine("You are unable to do that.");
-                }
+                return decisionMade;
             }
+
             //class selection function
             int GetClassSelectionInput(string description, string option1, string option2, string option3)
             {
