@@ -9,25 +9,43 @@ namespace Hello_Dungeon
 {
     internal class Game
     {
-        public void Run()
+        struct Player
         {
             //main stats
-            int playerStrength = 1;
-            int playerBody = 1;
-            int playerMind = 1;
-            int playerMaxHealth = 0;
-            int playerCurrentHealth = 0;
-            //inventory
-            int playerWealth = 3;
-            int playerWeaponValue = 1;
-            int playerArmorRating = 1;
-            int playerFocusDensity = 1;
-            //statistic totals
-            int playerWeaponDamageOutput = (playerStrength + playerWeaponValue);
-            int playerDefenseCapability = (playerArmorRating + playerBody);
-            int playerEtherOutput = (playerMind + playerFocusDensity);
-            //conditions
-            bool isScarWarm = false;
+            public string playerName;
+            public int playerStrength;
+            public int playerBody;
+            public int playerMind;
+            public int playerMaxHealth;
+            public int playerCurrentHealth;
+
+            public Player(
+                //main stats
+                string name,
+                int strength, 
+                int body, 
+                int mind, 
+                int maxHealth, 
+                int currentHealth ) 
+            {
+                name = playerName;
+                strength = playerStrength;
+                body = playerBody;
+                mind = playerMind;
+                maxHealth = playerMaxHealth;
+                currentHealth = playerCurrentHealth;
+
+            }
+        }
+        public void Run()
+        {
+            Player mainCharacter = new Player( 
+                name: "",
+                strength: 1,
+                body: 1,
+                mind: 1,
+                maxHealth: 0,
+                currentHealth: 0 );
 
             //introduction
             Console.WriteLine("You stir in your sleep as you dream, and in this dream a robed figure with contemplative red eyes manifests before you.");
@@ -89,18 +107,13 @@ namespace Hello_Dungeon
                     {
                         inputRecieved = 1;
                         Console.WriteLine("You focus on the Warrior, and feel yourself become a paragon of athleticism.");
-                        Console.WriteLine("A sword manifests itself from red energy in your dominant hand, and protective armor dons your body.");
-                        //class statistic and equipment benefits
-                        playerStrength = playerStrength + 2;
-                        playerBody = playerBody + 3;
-                        playerWeaponValue = playerWeaponValue + 1;
-                        playerArmorRating = playerArmorRating + 2;
-                        //statistic totals
-                        playerWeaponDamageOutput = (playerStrength + playerWeaponValue);
-                        playerDefenseCapability = (playerArmorRating + playerBody);
-                        playerEtherOutput = (playerMind + playerFocusDensity);
-                        playerMaxHealth = (playerBody + 9);
-                        playerCurrentHealth = playerMaxHealth;
+                        Console.WriteLine("A broadsword manifests itself from red energy in your dominant hand, and protective armor dons your body.");
+                        //class statistic benefits
+                        mainCharacter.playerStrength += 3;
+                        mainCharacter.playerBody += 3;
+                        mainCharacter.playerMind += 1;
+                        mainCharacter.playerMaxHealth += 10;
+                        mainCharacter.playerCurrentHealth += 10;
                         Console.WriteLine("Press any key to continue.");
                         Console.ReadKey();
                     }
@@ -109,16 +122,12 @@ namespace Hello_Dungeon
                         inputRecieved = 2;
                         Console.WriteLine("You focus on the Scoundrel, and feel yourself embody the mentality of a savage opportunist.");
                         Console.WriteLine("A wicked dagger manifests itself from red energy in your dominant hand, and you feel your senses sharpen.");
-                        //class statistic and equipment benefits
-                        playerStrength = playerStrength + 2;
-                        playerMind = playerMind + 2;
-                        playerWeaponValue = playerWeaponValue + 3;
-                        //statistic totals
-                        playerWeaponDamageOutput = (playerStrength + playerWeaponValue);
-                        playerDefenseCapability = (playerArmorRating + playerBody);
-                        playerEtherOutput = (playerMind + playerFocusDensity);
-                        playerMaxHealth = (playerBody + 9);
-                        playerCurrentHealth = playerMaxHealth;
+                        //class statistic benefits
+                        mainCharacter.playerStrength += 6;
+                        mainCharacter.playerBody += 2;
+                        mainCharacter.playerMind += 3;
+                        mainCharacter.playerMaxHealth += 7;
+                        mainCharacter.playerCurrentHealth += 7;
                         Console.WriteLine("Press any key to continue.");
                         Console.ReadKey();
                     }
@@ -127,15 +136,12 @@ namespace Hello_Dungeon
                         inputRecieved = 3;
                         Console.WriteLine("You focus on the Mystic, and feel the ether of reality bend more easily to your will.");
                         Console.WriteLine("A sphere of red reality-ether coalesces into your dominant hand. You can use this to focus your magics.");
-                        //class statistic and equipment benefits
-                        playerMind = playerMind + 4;
-                        playerFocusDensity = playerFocusDensity + 3;
-                        //statistic totals
-                        playerWeaponDamageOutput = (playerStrength + playerWeaponValue);
-                        playerDefenseCapability = (playerArmorRating + playerBody);
-                        playerEtherOutput = (playerMind + playerFocusDensity);
-                        playerMaxHealth = (playerBody + 9);
-                        playerCurrentHealth = playerMaxHealth;
+                        //class statistic benefits
+                        mainCharacter.playerStrength += 1;
+                        mainCharacter.playerBody += 2;
+                        mainCharacter.playerMind += 6;
+                        mainCharacter.playerMaxHealth += 7;
+                        mainCharacter.playerCurrentHealth += 7;
                         Console.WriteLine("Press any key to continue.");
                         Console.ReadKey();
                     }
@@ -155,11 +161,11 @@ namespace Hello_Dungeon
             string GetPlayerStatistics()
             {
                 string statisticsResult =
-                        ("'Your physical offense is " + playerWeaponDamageOutput + ".") +
-                        ("Your defensive capability is " + playerDefenseCapability + ".") +
-                        ("Your magical capability is " + playerEtherOutput + ".") +
-                        ("Your 'maximum hit points' are " + playerMaxHealth + ".") +
-                        ("Your 'current hit points' are " + playerCurrentHealth + ".'");
+                        ("'Your physical offense is " + mainCharacter.playerStrength + ".") +
+                        (" Your defensive capability is " + mainCharacter.playerBody + ".") +
+                        (" Your magical capability is " + mainCharacter.playerMind + ".") +
+                        (" Your 'maximum hit points' are " + mainCharacter.playerMaxHealth + ".") +
+                        (" Your 'current hit points' are " + mainCharacter.playerCurrentHealth + ".'");
                     
                 Console.WriteLine(statisticsResult);
                 Console.WriteLine("Press any key to continue.");
