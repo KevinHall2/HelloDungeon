@@ -50,10 +50,8 @@ namespace Hello_Dungeon
             //introduction
             Console.WriteLine("You stir in your sleep as you dream, and in this dream a robed figure with contemplative red eyes manifests before you.");
             Console.WriteLine("The figure poses a simple question, but it doesn't conventionally speak it, and instead imprints it into your mind.");
-            Console.WriteLine("'What is your name?'");
-            string playerName = Console.ReadLine();
+            GetPlayerNameInput("'What is your name?' You feel incredibly compelled to answer the strange demand.");
             Console.WriteLine();
-            Console.WriteLine("'Very well " + playerName + ".'");
             Console.WriteLine("The figure looks you up and down, and its eyes seem to narrow in dissapointment.");
             Console.WriteLine("'You are rather... ordinary. Determine a specialization to remedy this.'");
             Console.WriteLine();
@@ -156,7 +154,23 @@ namespace Hello_Dungeon
                 Console.Clear();
                 return inputRecieved;
             }
-
+            //input function
+            int GetPlayerNameInput(string premiseDescription)
+            {
+                string input = "";
+                int inputRecieved = 0;
+                while (inputRecieved != 1)
+                {
+                    Console.Clear();
+                    Console.WriteLine(premiseDescription);
+                    Console.Write(">");
+                    input = Console.ReadLine();
+                    mainCharacter.playerName = input;
+                    inputRecieved = 1;
+                }
+                return inputRecieved;
+                
+            }
             //stat display function
             string GetPlayerStatistics()
             {
