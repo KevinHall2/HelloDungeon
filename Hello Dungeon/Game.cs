@@ -48,19 +48,18 @@ namespace Hello_Dungeon
                 currentHealth: 0 );
 
             //introduction
-            Console.WriteLine("You stir in your sleep as you dream, and in this dream a robed figure with contemplative red eyes manifests before you.");
-            Console.WriteLine("The figure poses a simple question, but it doesn't conventionally speak it, and instead imprints it into your mind.");
+            GetStoryText("You stir in your sleep as you dream, and in this dream a robed figure with contemplative red eyes manifests before you. " +
+                "The figure poses a simple question, but it doesn't conventionally speak it, and instead imprints it into your mind.");
             GetPlayerNameInput("'What is your name?' You feel incredibly compelled to answer the strange demand.");
-            Console.WriteLine();
-            Console.WriteLine("The figure looks you up and down, and its eyes seem to narrow in dissapointment.");
-            Console.WriteLine("'You are rather... ordinary. Determine a specialization to remedy this.'");
-            Console.WriteLine();
+            GetStoryText("After your response, the figure seems to project more words into your mind. 'Well. Greetings " + mainCharacter.playerName + ". " +
+                "This... meeting of ours will only last for the duration of your dream. I simply want to play a game in the form of a small adventure for my boredom'. " +
+                "The figure then looks you up and down, and its eyes seem to narrow in dissapointment. 'You are rather... ordinary for the game. Determine a specialization to remedy this.'");
             //class selection
-            GetClassSelectionInput("Three such 'specializations forcibly inject themselves into your head: A Warrior, with a balance between physical offense and defense. A Scoundrel, with a focus on physical offense. A Mystic, with a focus on magical arts.", "warrior", "scoundrel", "mystic");
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine("As you adjust to your new power, you see the figure regard you with what seems like acceptance.");
-            Console.WriteLine("'Good. To help give you an idea of what you can do now, I'll rate your abilities from a scale of 1-20.'");
+            GetClassSelectionInput("Three such 'specializations' forcibly inject themselves into your head: A Warrior, with a balance between physical offense and defense." +
+                " A Scoundrel, with a focus on physical offense. A Mystic, with a focus on magical arts.", "warrior", "scoundrel", "mystic");
+            //statsitic display
+            GetStoryText("As you adjust to your new power, you see the figure regard you with what seems like acceptance." +
+                "'Good. To help give you an idea of what you can do now in this game, I'll rate your abilities from a scale of 1-20.'");
             string playerStatistics = GetPlayerStatistics();
             Console.WriteLine();
             Console.WriteLine("As you begin traversing the dungeon, you come into a hallway that branches into two different directions.");
@@ -107,11 +106,11 @@ namespace Hello_Dungeon
                         Console.WriteLine("You focus on the Warrior, and feel yourself become a paragon of athleticism.");
                         Console.WriteLine("A broadsword manifests itself from red energy in your dominant hand, and protective armor dons your body.");
                         //class statistic benefits
-                        mainCharacter.playerStrength += 3;
-                        mainCharacter.playerBody += 3;
-                        mainCharacter.playerMind += 1;
-                        mainCharacter.playerMaxHealth += 10;
-                        mainCharacter.playerCurrentHealth += 10;
+                        mainCharacter.playerStrength += 6;
+                        mainCharacter.playerBody += 7;
+                        mainCharacter.playerMind += 2;
+                        mainCharacter.playerMaxHealth += 15;
+                        mainCharacter.playerCurrentHealth += 15;
                         Console.WriteLine("Press any key to continue.");
                         Console.ReadKey();
                     }
@@ -121,12 +120,12 @@ namespace Hello_Dungeon
                         Console.WriteLine("You focus on the Scoundrel, and feel yourself embody the mentality of a savage opportunist.");
                         Console.WriteLine("A wicked dagger manifests itself from red energy in your dominant hand, and you feel your senses sharpen.");
                         //class statistic benefits
-                        mainCharacter.playerStrength += 6;
-                        mainCharacter.playerBody += 2;
-                        mainCharacter.playerMind += 3;
-                        mainCharacter.playerMaxHealth += 7;
-                        mainCharacter.playerCurrentHealth += 7;
-                        Console.WriteLine("Press any key to continue.");
+                        mainCharacter.playerStrength += 15;
+                        mainCharacter.playerBody += 4;
+                        mainCharacter.playerMind += 4;
+                        mainCharacter.playerMaxHealth += 10;
+                        mainCharacter.playerCurrentHealth += 10;
+                        Console.WriteLine("<<Press any key to continue.>>");
                         Console.ReadKey();
                     }
                     else if (input == "3" || input == option3)
@@ -135,9 +134,9 @@ namespace Hello_Dungeon
                         Console.WriteLine("You focus on the Mystic, and feel the ether of reality bend more easily to your will.");
                         Console.WriteLine("A sphere of red reality-ether coalesces into your dominant hand. You can use this to focus your magics.");
                         //class statistic benefits
-                        mainCharacter.playerStrength += 1;
+                        mainCharacter.playerStrength += 2;
                         mainCharacter.playerBody += 2;
-                        mainCharacter.playerMind += 6;
+                        mainCharacter.playerMind += 15;
                         mainCharacter.playerMaxHealth += 7;
                         mainCharacter.playerCurrentHealth += 7;
                         Console.WriteLine("Press any key to continue.");
@@ -153,6 +152,15 @@ namespace Hello_Dungeon
                 }
                 Console.Clear();
                 return inputRecieved;
+            }
+            //description or story text function
+            string GetStoryText(string storyText)
+            {
+                Console.Clear();
+                Console.WriteLine(storyText);
+                Console.WriteLine("<<Press any key to continue.>>");
+                Console.ReadKey();
+                return storyText;
             }
             //input function
             int GetPlayerNameInput(string premiseDescription)
@@ -182,7 +190,7 @@ namespace Hello_Dungeon
                         (" Your 'current hit points' are " + mainCharacter.playerCurrentHealth + ".'");
                     
                 Console.WriteLine(statisticsResult);
-                Console.WriteLine("Press any key to continue.");
+                Console.WriteLine("<<Press any key to continue.>>");
                 Console.ReadKey();
                 return statisticsResult;
             }
