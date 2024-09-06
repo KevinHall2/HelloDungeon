@@ -49,7 +49,7 @@ namespace Hello_Dungeon
                 currentHealth: 0 );
 
             //introduction
-            GetStoryText("You stir in your sleep as you dream, and in this dream a robed figure with contemplative red eyes manifests before you. " +
+            GetStoryText("You stir in your sleep as you dream, and in this dream a robed figure with contemplative red eyes manifests before you, becoming the only presence in a black void. " +
                 "The figure poses a simple question, but it doesn't conventionally speak it, and instead imprints it into your mind.");
             GetPlayerNameInput("'What is your name?' You feel incredibly compelled to answer the strange demand.");
             GetStoryText("After your response, the figure seems to project more words into your mind. 'Well. Greetings " + mainCharacter.playerName + ". " +
@@ -62,6 +62,15 @@ namespace Hello_Dungeon
             GetStoryText("As you adjust to your new power, you see the figure regard you with what seems like acceptance." +
                 "'Good. To help give you an idea of what you can do now in this game, I'll rate your abilities from a scale of 1-20.'");
             string playerStatistics = GetPlayerStatistics();
+            GetStoryText("'If you ever want to see these ratings again, simply say 'Stats' when you have the opportunity to make a decision.'");
+            //a bit more exposition
+            GetStoryText("'Now " + mainCharacter.playerName + ", I shall explain what you will do in the game. There are two ways to complete the adventure: find either the celestial or the fiend.'" +
+                " Red energy emanates from the figure, and the dream-void gains the structure of an entrance to a cave system.");
+            GetStoryText("'Sally forth into the cave " + mainCharacter.playerName + "and find them. I will be watching.' The figure then discorporates in red energy, leaving you alone.");
+            //first choice
+            GetDecisionInput("You stand before the entrance to the cave. Do you go inside, or back away into the dream-void?", "Go inside", "Back away", "You venture into the cavemouth " +
+                "and eventually come into a seemingly naturally formed corridor that branches into two doorways.", "You move back, away from the cavemouth. The robed figure appears again" +
+                " beside you, curiosity gleaming in its red eyes. 'Why do you turn away?'");
 
             
 
@@ -90,6 +99,10 @@ namespace Hello_Dungeon
                     {
                         decisionMade = 2;
                         Console.WriteLine(resolution2);
+                    }
+                    else if (input == "Stats" || input =="stats")
+                    {
+                        Console.WriteLine(playerStatistics);
                     }
                     else
                     {
@@ -176,7 +189,7 @@ namespace Hello_Dungeon
                 Console.ReadKey();
                 return storyText;
             }
-            //input function
+            //character name input function
             int GetPlayerNameInput(string premiseDescription)
             {
                 string input = "";
