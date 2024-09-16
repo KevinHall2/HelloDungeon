@@ -66,7 +66,7 @@ namespace Hello_Dungeon
             //a bit more exposition
             GetStoryText("'Now " + mainCharacter.playerName + ", I shall explain what you will do in the game. There are two ways to complete the adventure: find either the celestial or the fiend.'" +
                 " Red energy emanates from the figure, and the dream-void gains the structure of an entrance to a cave system.");
-            GetStoryText("'Sally forth into the cave " + mainCharacter.playerName + "and find them. I will be watching.' The figure then discorporates in red energy, leaving you alone.");
+            GetStoryText("'Sally forth into the cave " + mainCharacter.playerName + " and find them. I will be watching.' The figure then discorporates in red energy, leaving you alone.");
             //first choice
             GetDecisionInput("You stand before the entrance to the cave. Do you go inside, or back away into the dream-void?", "Go inside", "Back away", "You venture into the cavemouth " +
                 "and eventually come into a seemingly naturally formed corridor that branches into two doorways.", "You move back, away from the cavemouth. The robed figure appears again" +
@@ -102,7 +102,7 @@ namespace Hello_Dungeon
                     }
                     else if (input == "Stats" || input =="stats")
                     {
-                        Console.WriteLine(playerStatistics);
+                        GetPlayerStatistics();
                     }
                     else
                     {
