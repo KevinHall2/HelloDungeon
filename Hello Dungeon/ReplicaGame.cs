@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hello_Dungeon
 {
+    //this is all a brief and incomplete reimagining to try and incorporate structs
     internal class ReplicaGame
     {
         struct Player
