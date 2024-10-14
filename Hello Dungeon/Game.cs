@@ -38,6 +38,12 @@ namespace Hello_Dungeon
 
             }
         }
+
+        string option1;
+        string option2;
+        string option3;
+        string premiseDescription;
+        
         public void Run()
         {
             Player mainCharacter = new Player( 
@@ -51,31 +57,40 @@ namespace Hello_Dungeon
             //introduction
             GetStoryText("You stir in your sleep as you dream, and in this dream a robed figure with contemplative red eyes manifests before you, becoming the only presence in a black void. " +
                 "The figure poses a simple question, but it doesn't conventionally speak it, and instead imprints it into your mind.");
-            GetPlayerNameInput("'What is your name?' You feel incredibly compelled to answer the strange demand.");
+
+            GetInput("'What is your name?' You feel incredibly compelled to answer the strange demand.");
+
             GetStoryText("After your response, the figure seems to project more words into your mind. 'Well. Greetings " + mainCharacter.playerName + ". " +
                 "This... meeting of ours will only last for the duration of your dream. I simply want to play a game in the form of a small adventure for my boredom'. " +
                 "The figure then looks you up and down, and its eyes seem to narrow in dissapointment. 'You are rather... ordinary for the game. Determine a specialization to remedy this.'");
+
             //class selection
-            GetClassSelectionInput("Three such 'specializations' forcibly inject themselves into your head: A Warrior, with a balance between physical offense and defense." +
+            GetInput("Three such 'specializations' forcibly inject themselves into your head: A Warrior, with a balance between physical offense and defense." +
                 " A Scoundrel, with a focus on physical offense. A Mystic, with a focus on magical arts.", "warrior", "scoundrel", "mystic");
+
             //statsitic display
             GetStoryText("As you adjust to your new power, you see the figure regard you with what seems like acceptance." +
                 "'Good. To help give you an idea of what you can do now in this game, I'll rate your abilities from a scale of 1-20.'");
+
             string playerStatistics = GetPlayerStatistics();
+
             GetStoryText("'If you ever want to see these ratings again, simply say 'Stats' when you have the opportunity to make a decision.'");
+
             //a bit more exposition
             GetStoryText("'Now " + mainCharacter.playerName + ", I shall explain what you will do in the game. There are two ways to complete the adventure: find either the celestial or the fiend.'" +
                 " Red energy emanates from the figure, and the dream-void gains the structure of an entrance to a cave system.");
+
             GetStoryText("'Sally forth into the cave " + mainCharacter.playerName + " and find them. I will be watching.' The figure then discorporates in red energy, leaving you alone.");
+
             //first choice
-            GetDecisionInput("You stand before the entrance to the cave. Do you go inside, or back away into the dream-void?", "Go inside", "Back away", "You venture into the cavemouth " +
+            GetInput("You stand before the entrance to the cave. Do you go inside, or back away into the dream-void?", "Go inside", "Back away", "You venture into the cavemouth " +
                 "and eventually come into a seemingly naturally formed corridor that branches into two doorways.", "You move back, away from the cavemouth. The robed figure appears again" +
                 " beside you, curiosity gleaming in its red eyes. 'Why do you turn away?'");
 
             
 
             //function for two choice options
-            int GetDecisionInput(string premiseDescription, string option1, string option2, string resolution1, string resolution2)
+            int GetInput(string premiseDescription, string option1, string option2, string resolution1, string resolution2)
             {
                 string input = "";
                 int decisionMade = 0;
@@ -113,13 +128,13 @@ namespace Hello_Dungeon
             }
 
             //class selection function
-            int GetClassSelectionInput(string description, string option1, string option2, string option3)
+            GetInput(premiseDescription, option1, option2, option3);
             {
                 string input = "";
                 int inputRecieved = 0;
                 while (inputRecieved != 1 && inputRecieved != 2 && inputRecieved != 3)
                 {
-                    Console.WriteLine(description);
+                    Console.WriteLine(premiseDescription);
                     Console.WriteLine("1. " + option1);
                     Console.WriteLine("2. " + option2);
                     Console.WriteLine("3. " + option3);
@@ -178,7 +193,7 @@ namespace Hello_Dungeon
                     }
                 }
                 Console.Clear();
-                return inputRecieved;
+                return;
             }
             //description or story text function
             string GetStoryText(string storyText)
@@ -189,8 +204,9 @@ namespace Hello_Dungeon
                 Console.ReadKey();
                 return storyText;
             }
+
             //character name input function
-            int GetPlayerNameInput(string premiseDescription)
+            GetInput(premiseDescription)
             {
                 string input = "";
                 int inputRecieved = 0;
@@ -203,7 +219,7 @@ namespace Hello_Dungeon
                     mainCharacter.playerName = input;
                     inputRecieved = 1;
                 }
-                return inputRecieved;
+                return;
                 
             }
             //stat display function
