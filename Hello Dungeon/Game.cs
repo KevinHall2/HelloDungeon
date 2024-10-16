@@ -39,17 +39,168 @@ namespace Hello_Dungeon
             }
         }
 
-       
-        
+          Player mainCharacter = new Player(
+          name: "",
+          strength: 1,
+          body: 1,
+          mind: 1,
+          maxHealth: 0,
+          currentHealth: 0);
+
+        //function for two choice options
+        int GetInput(string premiseDescription, string option1, string option2, string resolution1, string resolution2)
+        {
+            string input = "";
+            int decisionMade = 0;
+            while (decisionMade != 1 && decisionMade != 2)
+
+            {
+                Console.Clear();
+                Console.WriteLine(premiseDescription);
+                Console.WriteLine("1. " + option1);
+                Console.WriteLine("2. " + option2);
+                Console.Write("> ");
+
+                input = Console.ReadLine();
+
+                if (input == "1" || input == option1)
+                {
+                    decisionMade = 1;
+                    Console.WriteLine(resolution1);
+                }
+                else if (input == "2" || input == option2)
+                {
+                    decisionMade = 2;
+                    Console.WriteLine(resolution2);
+                }
+                else if (input == "Stats" || input == "stats")
+                {
+                    GetPlayerStatistics();
+                }
+                else
+                {
+                    Console.WriteLine("You are unable to do that.");
+                }
+            }
+            return decisionMade;
+        }
+
+        //class selection function
+        int GetInput(string premiseDescription, string option1, string option2, string option3)
+        {
+            string input = "";
+            int inputRecieved = 0;
+            while (inputRecieved != 1 && inputRecieved != 2 && inputRecieved != 3)
+            {
+                Console.WriteLine(premiseDescription);
+                Console.WriteLine("1. " + option1);
+                Console.WriteLine("2. " + option2);
+                Console.WriteLine("3. " + option3);
+                Console.Write("> ");
+
+                input = Console.ReadLine();
+
+                if (input == "1" || input == option1)
+                {
+                    inputRecieved = 1;
+                    Console.WriteLine("You focus on the Warrior, and feel yourself become a paragon of athleticism.");
+                    Console.WriteLine("A broadsword manifests itself from red energy in your dominant hand, and protective armor dons your body.");
+                    //class statistic benefits
+                    mainCharacter.playerStrength += 6;
+                    mainCharacter.playerBody += 7;
+                    mainCharacter.playerMind += 2;
+                    mainCharacter.playerMaxHealth += 15;
+                    mainCharacter.playerCurrentHealth += 15;
+                    Console.WriteLine("Press any key to continue.");
+                    Console.ReadKey();
+                }
+                else if (input == "2" || input == option2)
+                {
+                    inputRecieved = 2;
+                    Console.WriteLine("You focus on the Scoundrel, and feel yourself embody the mentality of a savage opportunist.");
+                    Console.WriteLine("A wicked dagger manifests itself from red energy in your dominant hand, and you feel your senses sharpen.");
+                    //class statistic benefits
+                    mainCharacter.playerStrength += 15;
+                    mainCharacter.playerBody += 4;
+                    mainCharacter.playerMind += 4;
+                    mainCharacter.playerMaxHealth += 10;
+                    mainCharacter.playerCurrentHealth += 10;
+                    Console.WriteLine("<<Press any key to continue.>>");
+                    Console.ReadKey();
+                }
+                else if (input == "3" || input == option3)
+                {
+                    inputRecieved = 3;
+                    Console.WriteLine("You focus on the Mystic, and feel the ether of reality bend more easily to your will.");
+                    Console.WriteLine("A sphere of red reality-ether coalesces into your dominant hand. You can use this to focus your magics.");
+                    //class statistic benefits
+                    mainCharacter.playerStrength += 2;
+                    mainCharacter.playerBody += 2;
+                    mainCharacter.playerMind += 15;
+                    mainCharacter.playerMaxHealth += 7;
+                    mainCharacter.playerCurrentHealth += 7;
+                    Console.WriteLine("Press any key to continue.");
+                    Console.ReadKey();
+                }
+                else
+                {
+                    Console.WriteLine("You attempt to manifest that idea, but the figure purges it from your mind.");
+                    Console.WriteLine("'Pick one of the three: Warrior, scoundrel, or mystic.'");
+                    Console.Write("> ");
+                    Console.ReadKey();
+                }
+            }
+            Console.Clear();
+            return inputRecieved;
+        }
+
+        //character name input function
+        int GetInput(string premiseDescription)
+        {
+            string input = "";
+            int decisionMade = 0;
+            while (decisionMade != 1)
+            {
+                Console.Clear();
+                Console.WriteLine(premiseDescription);
+                Console.Write(">");
+                input = Console.ReadLine();
+                mainCharacter.playerName = input;
+                decisionMade = 1;
+            }
+            return decisionMade;
+        }
+
+        //stat display function
+        string GetPlayerStatistics()
+        {
+            string statisticsResult =
+                    ("'Your physical offense is " + mainCharacter.playerStrength + ".") +
+                    (" Your defensive capability is " + mainCharacter.playerBody + ".") +
+                    (" Your magical capability is " + mainCharacter.playerMind + ".") +
+                    (" Your 'maximum hit points' are " + mainCharacter.playerMaxHealth + ".") +
+                    (" Your 'current hit points' are " + mainCharacter.playerCurrentHealth + ".'");
+
+            Console.WriteLine(statisticsResult);
+            Console.WriteLine("<<Press any key to continue.>>");
+            Console.ReadKey();
+            return statisticsResult;
+        }
+
+        //description or story text function
+        string GetStoryText(string storyText)
+        {
+            Console.Clear();
+            Console.WriteLine(storyText);
+            Console.WriteLine("<<Press any key to continue.>>");
+            Console.ReadKey();
+            return storyText;
+        }
+
+
         public void Run()
         {
-            Player mainCharacter = new Player( 
-                name: "",
-                strength: 1,
-                body: 1,
-                mind: 1,
-                maxHealth: 0,
-                currentHealth: 0 );
+
 
             //introduction
             GetStoryText("You stir in your sleep as you dream, and in this dream a robed figure with contemplative red eyes manifests before you, becoming the only presence in a black void. " +
@@ -86,155 +237,7 @@ namespace Hello_Dungeon
 
             
 
-            //function for two choice options
-            int GetInput(string premiseDescription, string option1, string option2, string resolution1, string resolution2)
-            {
-                string input = "";
-                int decisionMade = 0;
-                while (decisionMade != 1 && decisionMade != 2)
 
-                {
-                    Console.Clear();
-                    Console.WriteLine(premiseDescription);
-                    Console.WriteLine("1. " + option1);
-                    Console.WriteLine("2. " + option2);
-                    Console.Write("> ");
-
-                    input = Console.ReadLine();
-
-                    if (input == "1" || input == option1)
-                    {
-                        decisionMade = 1;
-                        Console.WriteLine(resolution1);
-                    }
-                    else if (input == "2" || input == option2)
-                    {
-                        decisionMade = 2;
-                        Console.WriteLine(resolution2);
-                    }
-                    else if (input == "Stats" || input =="stats")
-                    {
-                        GetPlayerStatistics();
-                    }
-                    else
-                    {
-                        Console.WriteLine("You are unable to do that.");
-                    }
-                }
-                return decisionMade;
-            }
-
-            //class selection function
-            int GetInput(string premiseDescription, string option1, string option2, string option3)
-            {
-                string input = "";
-                int inputRecieved = 0;
-                while (inputRecieved != 1 && inputRecieved != 2 && inputRecieved != 3)
-                {
-                    Console.WriteLine(premiseDescription);
-                    Console.WriteLine("1. " + option1);
-                    Console.WriteLine("2. " + option2);
-                    Console.WriteLine("3. " + option3);
-                    Console.Write("> ");
-
-                    input = Console.ReadLine();
-
-                    if (input == "1" || input == option1)
-                    {
-                        inputRecieved = 1;
-                        Console.WriteLine("You focus on the Warrior, and feel yourself become a paragon of athleticism.");
-                        Console.WriteLine("A broadsword manifests itself from red energy in your dominant hand, and protective armor dons your body.");
-                        //class statistic benefits
-                        mainCharacter.playerStrength += 6;
-                        mainCharacter.playerBody += 7;
-                        mainCharacter.playerMind += 2;
-                        mainCharacter.playerMaxHealth += 15;
-                        mainCharacter.playerCurrentHealth += 15;
-                        Console.WriteLine("Press any key to continue.");
-                        Console.ReadKey();
-                    }
-                    else if (input == "2" || input == option2)
-                    {
-                        inputRecieved = 2;
-                        Console.WriteLine("You focus on the Scoundrel, and feel yourself embody the mentality of a savage opportunist.");
-                        Console.WriteLine("A wicked dagger manifests itself from red energy in your dominant hand, and you feel your senses sharpen.");
-                        //class statistic benefits
-                        mainCharacter.playerStrength += 15;
-                        mainCharacter.playerBody += 4;
-                        mainCharacter.playerMind += 4;
-                        mainCharacter.playerMaxHealth += 10;
-                        mainCharacter.playerCurrentHealth += 10;
-                        Console.WriteLine("<<Press any key to continue.>>");
-                        Console.ReadKey();
-                    }
-                    else if (input == "3" || input == option3)
-                    {
-                        inputRecieved = 3;
-                        Console.WriteLine("You focus on the Mystic, and feel the ether of reality bend more easily to your will.");
-                        Console.WriteLine("A sphere of red reality-ether coalesces into your dominant hand. You can use this to focus your magics.");
-                        //class statistic benefits
-                        mainCharacter.playerStrength += 2;
-                        mainCharacter.playerBody += 2;
-                        mainCharacter.playerMind += 15;
-                        mainCharacter.playerMaxHealth += 7;
-                        mainCharacter.playerCurrentHealth += 7;
-                        Console.WriteLine("Press any key to continue.");
-                        Console.ReadKey();
-                    }
-                    else
-                    {
-                        Console.WriteLine("You attempt to manifest that idea, but the figure purges it from your mind.");
-                        Console.WriteLine("'Pick one of the three: Warrior, scoundrel, or mystic.'");
-                        Console.Write("> ");
-                        Console.ReadKey();
-                    }
-                }
-                Console.Clear();
-                return inputRecieved;
-            }
-
-            //character name input function
-            int GetInput(string premiseDescription)
-            {
-                string input = "";
-                int decisionMade = 0;
-                while (decisionMade != 1)
-                {
-                    Console.Clear();
-                    Console.WriteLine(premiseDescription);
-                    Console.Write(">");
-                    input = Console.ReadLine();
-                    mainCharacter.playerName = input;
-                    decisionMade = 1;
-                }
-                return decisionMade;              
-            }
-
-            //stat display function
-            string GetPlayerStatistics()
-            {
-                string statisticsResult =
-                        ("'Your physical offense is " + mainCharacter.playerStrength + ".") +
-                        (" Your defensive capability is " + mainCharacter.playerBody + ".") +
-                        (" Your magical capability is " + mainCharacter.playerMind + ".") +
-                        (" Your 'maximum hit points' are " + mainCharacter.playerMaxHealth + ".") +
-                        (" Your 'current hit points' are " + mainCharacter.playerCurrentHealth + ".'");
-                    
-                Console.WriteLine(statisticsResult);
-                Console.WriteLine("<<Press any key to continue.>>");
-                Console.ReadKey();
-                return statisticsResult;
-            }
-
-            //description or story text function
-            string GetStoryText(string storyText)
-            {
-                Console.Clear();
-                Console.WriteLine(storyText);
-                Console.WriteLine("<<Press any key to continue.>>");
-                Console.ReadKey();
-                return storyText;
-            }
 
         }
     }
