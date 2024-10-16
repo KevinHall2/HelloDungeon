@@ -39,10 +39,7 @@ namespace Hello_Dungeon
             }
         }
 
-        string option1;
-        string option2;
-        string option3;
-        string premiseDescription;
+       
         
         public void Run()
         {
@@ -128,7 +125,7 @@ namespace Hello_Dungeon
             }
 
             //class selection function
-            GetInput(premiseDescription, option1, option2, option3);
+            int GetInput(string premiseDescription, string option1, string option2, string option3)
             {
                 string input = "";
                 int inputRecieved = 0;
@@ -193,35 +190,26 @@ namespace Hello_Dungeon
                     }
                 }
                 Console.Clear();
-                return;
-            }
-            //description or story text function
-            string GetStoryText(string storyText)
-            {
-                Console.Clear();
-                Console.WriteLine(storyText);
-                Console.WriteLine("<<Press any key to continue.>>");
-                Console.ReadKey();
-                return storyText;
+                return inputRecieved;
             }
 
             //character name input function
-            GetInput(premiseDescription)
+            int GetInput(string premiseDescription)
             {
                 string input = "";
-                int inputRecieved = 0;
-                while (inputRecieved != 1)
+                int decisionMade = 0;
+                while (decisionMade != 1)
                 {
                     Console.Clear();
                     Console.WriteLine(premiseDescription);
                     Console.Write(">");
                     input = Console.ReadLine();
                     mainCharacter.playerName = input;
-                    inputRecieved = 1;
+                    decisionMade = 1;
                 }
-                return;
-                
+                return decisionMade;              
             }
+
             //stat display function
             string GetPlayerStatistics()
             {
@@ -237,6 +225,17 @@ namespace Hello_Dungeon
                 Console.ReadKey();
                 return statisticsResult;
             }
+
+            //description or story text function
+            string GetStoryText(string storyText)
+            {
+                Console.Clear();
+                Console.WriteLine(storyText);
+                Console.WriteLine("<<Press any key to continue.>>");
+                Console.ReadKey();
+                return storyText;
+            }
+
         }
     }
 }
